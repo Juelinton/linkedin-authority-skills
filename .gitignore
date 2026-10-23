@@ -1,0 +1,14 @@
+# Your voice profile is yours. Fill it in locally, do not commit it upstream.
+linkedin-voice/
+!voice/
+
+# Drafts
+drafts/
+*.draft.txt
+*.draft.md
+
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+venv/
