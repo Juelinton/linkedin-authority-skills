@@ -1,0 +1,13 @@
+{
+  "name": "linkedin-authority",
+  "displayName": "LinkedIn Authority Skills",
+  "version": "0.1.0",
+  "description": "Seven skills for LinkedIn posts, articles, carousels, comments and DMs in your own voice, plus a deterministic sanitizer that strips machine-written tells.",
+  "author": {
+    "name": "Juelinton Silveira",
+    "url": "https://www.linkedin.com/in/juelinton/"
+  },
+  "repository": "https://github.com/Juelinton/linkedin-authority-skills",
+  "license": "MIT",
+  "keywords": ["linkedin", "writing", "content", "anti-slop", "voice"]
+}

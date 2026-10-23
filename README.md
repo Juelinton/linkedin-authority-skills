@@ -39,8 +39,8 @@ python3 tools/sanitize.py --check post.txt   # audit only, change nothing
 cat post.txt | python3 tools/sanitize.py -   # stdin to stdout
 ```
 
-It preserves `⠀` (U+2800), the braille blank that survives LinkedIn's editor collapsing your blank
-lines.
+It preserves `⠀` (U+2800), the braille blank many LinkedIn writers use to keep the editor from
+collapsing their blank lines.
 
 ---
 
@@ -51,30 +51,33 @@ lines.
 | `/setup-voice` | Interviews you and builds your voice profile. **Run this first.** |
 | `/topic-score` | Scores a topic 0-10 before you spend an afternoon on it. Blunt on purpose. |
 | `/linkedin-post` | A feed post in one of seven style variants, plus outlier mode |
-| `/linkedin-article` | Long-form, 800-2500 words, built to rank rather than to go viral |
-| `/linkedin-carousel` | Slide script for a document post, the format with the highest Save rate |
-| `/linkedin-comment` | Three comments for someone else's post, written as a peer not a fan |
+| `/linkedin-article` | Long-form, 800-2500 words, built for search and for the reader who stays |
+| `/linkedin-carousel` | Slide script for a document post, the PDF carousel readers save and come back to |
+| `/linkedin-comment` | Three comments for someone else's post, written as a peer |
 | `/linkedin-dm` | Three DMs, with the ask deliberately held back until the relationship earns it |
 
 ---
 
 ## Install
 
-Copy `skills/` into your Claude Code skills directory:
-
-```bash
-git clone https://github.com/YOUR_USERNAME/linkedin-authority-skills.git
-cp -r linkedin-authority-skills/skills/* ~/.claude/skills/
-```
-
-Keep the cloned repo around, since the skills reference `tools/sanitize.py` and
-`reference/linkedin-algorithm.md`. Or clone it into a project and use it from there.
-
-Then, in a project directory where you want to write:
+The repo is a Claude Code plugin marketplace. Inside Claude Code, run:
 
 ```
-/setup-voice
+/plugin marketplace add Juelinton/linkedin-authority-skills
+/plugin install linkedin-authority@juelinton-skills
 ```
+
+The skills load with the plugin's name as a prefix, so `/setup-voice` runs as
+`/linkedin-authority:setup-voice`. The sanitizer and the reference ship inside the plugin, and the
+skills find them on their own.
+
+Then, in the project directory where you want to write:
+
+```
+/linkedin-authority:setup-voice
+```
+
+To try it from a clone first, start Claude Code with `claude --plugin-dir ./linkedin-authority-skills`.
 
 ---
 
@@ -113,14 +116,13 @@ semantic SEO. The skills pull from it as needed and you do not have to read it t
 
 It is compiled from about 70 public sources: LinkedIn's own engineering papers on arXiv, independent
 algorithm research, and public work by practitioners who study the platform full time. Sources are
-credited at the bottom of that file. Nothing came from paid or leaked material, LinkedIn has
-confirmed none of it, and the numbers are third-party so they should be read as direction rather
-than as constants.
+credited at the bottom of that file. Everything came from freely published material. LinkedIn has
+confirmed none of it, and the numbers are third-party, so read them as direction.
 
-**Sources last reviewed April 2026.** Reviewed when LinkedIn engineering publishes a new ranking
-paper, or roughly quarterly.
+**Sources last reviewed April 2026, links checked October 2026.** Reviewed when LinkedIn engineering
+publishes a new ranking paper, or roughly quarterly.
 
-**And the honest caveat:** your own analytics beat this document. Thirty of your own measured posts
+Your own analytics beat this document. Thirty of your own measured posts
 tell you more about your account than seventy articles about the platform. Where they disagree, your
 numbers win.
 
@@ -139,13 +141,13 @@ numbers win.
 
 ## Credits
 
-The anti-slop pattern set is adapted from [petergyang/no-ai-slop](https://github.com/petergyang/no-ai-slop) (MIT).
+The anti-slop pattern set is adapted from [petergyang/no-ai-slop](https://github.com/petergyang/no-ai-slop) (MIT), with its license reproduced in `THIRD_PARTY_NOTICES.md`.
 
 The writing specs draw on the public work of **Richard van der Blom** (Just Connecting), **Jasmin
 Alić** and **Michelle J Raymond**, alongside LinkedIn's own published research. Full list in
 `reference/linkedin-algorithm.md`.
 
-Built by [Juelinton Silveira](LINKEDIN_URL_HERE). If you use this, I would like to see what you make
+Built by [Juelinton Silveira](https://www.linkedin.com/in/juelinton/). If you use this, I would like to see what you make
 with it.
 
 MIT licensed. Fork it, gut it, make it yours. That is the point.

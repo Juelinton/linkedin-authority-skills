@@ -19,7 +19,7 @@ peer, **extending the thinking** with real experience.
 
 Read `linkedin-voice/persona.md` and `niche.md`. The comment has to read as someone who worked the
 field, and the evidence list in `persona.md` is where that comes from. If `linkedin-voice/` is
-missing, stop and point at `/setup-voice`.
+missing, stop and point at `/linkedin-authority:setup-voice`.
 
 ## Structure of each comment
 
@@ -59,7 +59,7 @@ post before the options. Each option is raw text, ready to paste.
 Run the sanitizer if formatting is in doubt:
 
 ```bash
-python3 tools/sanitize.py --check comment.txt
+python3 "${CLAUDE_PLUGIN_ROOT}/tools/sanitize.py" --check comment.txt
 ```
 
 **The author picks which one to post. Never post on their behalf.**

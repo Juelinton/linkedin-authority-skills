@@ -3,7 +3,7 @@
 Who you are writing for, and what you are arguing against. This is what stops the output from being
 competent and generic.
 
-Copy to `linkedin-voice/niche.md` and fill in, or run `/setup-voice`.
+Copy to `linkedin-voice/niche.md` and fill in, or run `/linkedin-authority:setup-voice`.
 
 ---
 
@@ -54,6 +54,6 @@ posts of pure opinion. Keep this list growing, it is the scarcest input.]
 ## Topics that are off-niche
 
 [Things you find interesting but that dilute your semantic signal. Naming them here lets
-`/topic-score` push back on you honestly instead of writing whatever you ask for.]
+`/linkedin-authority:topic-score` push back on you honestly instead of writing whatever you ask for.]
 
 -

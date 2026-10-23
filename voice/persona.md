@@ -3,7 +3,7 @@
 Who is writing. Every skill reads this file to sound like you instead of like a model.
 
 Copy this file to `linkedin-voice/persona.md` in your project, then fill it in. Or run
-`/setup-voice` and answer the questions.
+`/linkedin-authority:setup-voice` and answer the questions.
 
 Delete the instructions in brackets as you go. Short and specific beats long and vague.
 

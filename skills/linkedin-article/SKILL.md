@@ -15,9 +15,9 @@ terms of the niche.
 ## Before writing
 
 Read `linkedin-voice/persona.md`, `niche.md` and `style.md`. `style.md` wins any conflict below.
-If `linkedin-voice/` is missing, stop and point at `/setup-voice`.
+If `linkedin-voice/` is missing, stop and point at `/linkedin-authority:setup-voice`.
 
-Relevant depth: `reference/linkedin-algorithm.md`, spec 7 (semantic SEO) matters most here, because
+Relevant depth: `${CLAUDE_PLUGIN_ROOT}/reference/linkedin-algorithm.md`, spec 7 (semantic SEO) matters most here, because
 an article that ranks keeps working for months after the feed forgets it.
 
 ## Headline, diagnostic never promise
@@ -76,7 +76,7 @@ and want more analysis like this, subscribe."*
 LinkedIn does not render markdown. Output **plain text**. Run the sanitizer, not optional:
 
 ```bash
-python3 tools/sanitize.py article.txt
+python3 "${CLAUDE_PLUGIN_ROOT}/tools/sanitize.py" article.txt
 ```
 
 It fixes em dashes, asterisks, backticks and headings, and reports semicolons, false dichotomy,

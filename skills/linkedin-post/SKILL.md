@@ -9,15 +9,15 @@ description: Write a LinkedIn feed post in the author's voice, in one of seven s
 
 Read from `linkedin-voice/`:
 
-- **`persona.md`** — you write **as** the author, not about them. The evidence list is where every
+- **`persona.md`**: you write **as** the author, not about them. The evidence list is where every
   credibility signal comes from.
-- **`niche.md`** — the reader, the enemy, the vocabulary.
-- **`style.md`** — taste. **This file wins any conflict with the rules below.**
+- **`niche.md`**: the reader, the enemy, the vocabulary.
+- **`style.md`**: taste. **This file wins any conflict with the rules below.**
 
-If `linkedin-voice/` is missing, stop and point at `/setup-voice`. Writing against a generic profile
+If `linkedin-voice/` is missing, stop and point at `/linkedin-authority:setup-voice`. Writing against a generic profile
 produces generic output, which is the one outcome worth avoiding.
 
-Optional depth: `reference/linkedin-algorithm.md`, specs 2 (dwell time), 3 (hooks), 6 (anti-slop),
+Optional depth: `${CLAUDE_PLUGIN_ROOT}/reference/linkedin-algorithm.md`, specs 2 (dwell time), 3 (hooks), 6 (anti-slop),
 7 (semantic SEO).
 
 **Ask which variant** if the user does not say. Default is **staccato**. Asking for several variants
@@ -25,7 +25,7 @@ of the same topic is the most common use, so offer it.
 
 ## The seven variants
 
-### staccato — *default*
+### staccato (default)
 Mobile, high dwell time, aggressive hook. The hot take, the contrarian announcement.
 
 - Line 1: contrarian or specificity hook. One sentence, direct.
@@ -59,7 +59,7 @@ Strong claim plus three numbered reasons. Generates the most comment volume.
 
 - Line 1: a strong, declarative, counter-intuitive claim.
 - Line 2: *"I hold this for three reasons."*
-- `1.` `2.` `3.` — two to three sentences each.
+- `1.` `2.` `3.`: two to three sentences each.
 - Close: *"I could be wrong. But in [lived context], this is what I have seen work."*
 - Invitation: a question that asks the reader to disagree **with an argument**.
 - **The thesis has to be defensible and grounded in experience.** No provocation for its own sake.
@@ -128,7 +128,7 @@ ship an em dash it was explicitly told to avoid. That is why there is a determin
 **Write the post to a file and run:**
 
 ```bash
-python3 tools/sanitize.py post.txt
+python3 "${CLAUDE_PLUGIN_ROOT}/tools/sanitize.py" post.txt
 ```
 
 It **fixes on its own** what is mechanical (em dashes, asterisks, backticks, headings, `_italic_`,
@@ -163,12 +163,12 @@ to **inherit the validated frame and replace all of the contents**.
 
 **Hook mode** (ask, default is `adapt`):
 
-- **verbatim** — a generic concept hook ("How to X", "Top N mistakes") has no owner. Use it nearly
+- **verbatim**: a generic concept hook ("How to X", "Top N mistakes") has no owner. Use it nearly
   as-is, adapting only enough to read naturally. Keep the rhythm, the count and the syntax.
-- **adapt** *(default)* — adapt to the niche while keeping the syntactic structure. *"How to escape
+- **adapt** *(default)*: adapt to the niche while keeping the syntactic structure. *"How to escape
   beginner hell"* → *"How to escape a paralyzed buying committee."* Keep the "How to escape [bad
   thing]" pattern, swap the bad thing.
-- **inspired** — the original hook carries the author's fingerprint (a proper noun, a very specific
+- **inspired**: the original hook carries the author's fingerprint (a proper noun, a very specific
   number, a unique story). Do not copy it. Write a new hook that inherits only the narrative shape.
 
 **Not allowed:** literal sentence-by-sentence translation · keeping an example, name or number from

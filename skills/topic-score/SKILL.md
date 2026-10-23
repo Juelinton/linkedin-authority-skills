@@ -12,14 +12,14 @@ an afternoon of writing and dies in the feed.
 
 Read from `linkedin-voice/`:
 
-- **`persona.md`** — the history. The score measures the distance between the topic and **this**
+- **`persona.md`**: the history. The score measures the distance between the topic and **this**
   author, not the quality of the topic in the abstract.
-- **`niche.md`** — the reader, the enemy, the off-niche list.
+- **`niche.md`**: the reader, the enemy, the off-niche list.
 
-If `linkedin-voice/` does not exist, say so and point at `/setup-voice`. Do not score against a
+If `linkedin-voice/` does not exist, say so and point at `/linkedin-authority:setup-voice`. Do not score against a
 generic profile, the number would be meaningless.
 
-Context, if useful: `reference/linkedin-algorithm.md`, spec 1. The ranker reads the author's headline
+Context, if useful: `${CLAUDE_PLUGIN_ROOT}/reference/linkedin-algorithm.md`, spec 1. The ranker reads the author's headline
 and About section as context before letting a post travel outside their network, so semantic distance
 from the profile is a real reach constraint, not a stylistic preference.
 
@@ -51,7 +51,7 @@ someone shows up with a list and wants to know where to spend the afternoon.
 
 ## After the score
 
-- **8 or higher:** offer to write it, and ask which variant (`/linkedin-post` covers seven).
+- **8 or higher:** offer to write it, and ask which variant (`/linkedin-authority:linkedin-post` covers seven).
 - **5 to 7:** say what would raise it. Usually it is the angle, not the topic. The same subject seen
   through the niche's lens routinely jumps from 6 to 8. Do not write before they decide.
 - **4 or lower:** say it is not worth it, and why. **Do not offer to rescue it.** If they insist,

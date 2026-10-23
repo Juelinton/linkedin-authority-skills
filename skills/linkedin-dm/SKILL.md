@@ -37,10 +37,10 @@ Read `linkedin-voice/persona.md` and `niche.md` so the message sounds like the a
 
 ## By stage
 
-- **cold** — first contact. Specific, genuine recognition of something they made. **Ask for nothing.**
+- **cold**: first contact. Specific, genuine recognition of something they made. **Ask for nothing.**
   You are only opening a door.
-- **warm** — you have exchanged messages. Show real interest, offer something useful. Still no ask.
-- **deep** — established relationship. Now you can send a resource and **make the ask**.
+- **warm**: you have exchanged messages. Show real interest, offer something useful. Still no ask.
+- **deep**: established relationship. Now you can send a resource and **make the ask**.
 
 **The rule that makes this work:** the goal, whatever it is, **is only asked in `deep`**. In cold and
 warm you are building the ground for it. Asking early is exactly the neediness this avoids. If the

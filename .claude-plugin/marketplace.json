@@ -1,0 +1,14 @@
+{
+  "name": "juelinton-skills",
+  "description": "Claude Code plugins by Juelinton Silveira",
+  "owner": {
+    "name": "Juelinton Silveira"
+  },
+  "plugins": [
+    {
+      "name": "linkedin-authority",
+      "source": "./",
+      "description": "LinkedIn writing skills in your own voice, plus a deterministic anti-slop sanitizer"
+    }
+  ]
+}

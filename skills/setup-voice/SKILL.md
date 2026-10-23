@@ -9,7 +9,7 @@ Every other skill here reads three files from `linkedin-voice/` in the project r
 `persona.md`, `niche.md`, `style.md`. Without them the output is competent and generic, which is
 worth nothing on a feed. This skill produces them by interview.
 
-**Templates and a filled reference sit in `voice/` in this repo.** Read `voice/example/filled-example.md`
+**Templates and a filled reference sit in `${CLAUDE_PLUGIN_ROOT}/voice/`.** Read `${CLAUDE_PLUGIN_ROOT}/voice/example/filled-example.md`
 before you start, so you know the level of specificity you are aiming for.
 
 ## How to run this
@@ -53,11 +53,11 @@ Two rules that decide whether this works:
 - If you write in a language other than English, which terms stay in English anyway because that is
   how your market speaks?
 - What numbers or studies are you allowed to cite publicly?
-- What topics interest you but are off-niche? (This lets `/topic-score` push back honestly.)
+- What topics interest you but are off-niche? (This lets `/linkedin-authority:topic-score` push back honestly.)
 
 ### Part 3, taste (→ `style.md`)
 
-Start from the defaults in `voice/style.md` and confirm rather than asking open questions. Most
+Start from the defaults in `${CLAUDE_PLUGIN_ROOT}/voice/style.md` and confirm rather than asking open questions. Most
 people have never articulated their style rules and will produce better answers by reacting.
 
 - Walk through the hard rules and ask which they want off. Explain the em dash one, since it is the
@@ -74,13 +74,13 @@ people have never articulated their style rules and will produce better answers 
 ## Writing the files
 
 1. Create `linkedin-voice/` in the project root.
-2. Write `persona.md`, `niche.md`, `style.md` following the structure of the templates in `voice/`.
+2. Write `persona.md`, `niche.md`, `style.md` following the structure of the templates in `${CLAUDE_PLUGIN_ROOT}/voice/`.
 3. **Write only what the user actually said.** Where a section is empty, say so in the file:
    `[not yet answered, ask before relying on this]`.
 4. Show the three files and ask for corrections. Expect the enemy and the position sections to need
    a second pass, those are the hardest to get right and the most valuable when they land.
 
-Then tell them what to run next: `/topic-score` to check an idea, `/linkedin-post` to write one.
+Then tell them what to run next: `/linkedin-authority:topic-score` to check an idea, `/linkedin-authority:linkedin-post` to write one.
 
 ## When to re-run
 

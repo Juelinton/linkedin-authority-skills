@@ -3,7 +3,7 @@
 Your taste. **This file overrides every technical rule in the repo.** Best practice that fights the
 author's signature produces posts nobody believes.
 
-Copy to `linkedin-voice/style.md` and edit, or run `/setup-voice`.
+Copy to `linkedin-voice/style.md` and edit, or run `/linkedin-authority:setup-voice`.
 
 The defaults below are opinionated on purpose. They exist because a text that follows all of them
 stops reading as machine-written. Turn off anything you disagree with, the skills follow this file.

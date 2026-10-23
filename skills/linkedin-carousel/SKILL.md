@@ -12,9 +12,9 @@ Rendering is a separate step, covered at the end.
 ## Before writing
 
 Read `linkedin-voice/persona.md`, `niche.md` and `style.md`. If `linkedin-voice/` is missing, stop
-and point at `/setup-voice`.
+and point at `/linkedin-authority:setup-voice`.
 
-Depth: `reference/linkedin-algorithm.md`, spec 5 (format selection) explains why completion rate
+Depth: `${CLAUDE_PLUGIN_ROOT}/reference/linkedin-algorithm.md`, spec 5 (format selection) explains why completion rate
 governs whether this travels.
 
 ## Script rules
