@@ -8,11 +8,13 @@ Read this when a skill points you here. You do not need to read it end to end to
 > **What this is.** A synthesis of public material: LinkedIn's own engineering papers, independent
 > algorithm research, and public talks by practitioners who study the platform full time. It is not
 > insider information and LinkedIn has confirmed none of it. Numbers below come from third-party
-> studies, so treat them as direction, not as constants. Full source list at the bottom.
+> studies, so treat them as direction. Full source list at the bottom.
 >
-> **Sources last reviewed: April 2026.** Reviewed when LinkedIn's engineering team publishes a new
-> ranking paper, or roughly every quarter, whichever comes first. Nothing here has changed
-> architecturally since the 360Brew transition.
+> **Sources last reviewed: April 2026. Links checked: October 2026.** Reviewed when LinkedIn's engineering team publishes a new
+> ranking paper, or roughly every quarter, whichever comes first. LinkedIn's February 2026 Feed-SR paper
+> (listed under Sources) describes a transformer-based sequential ranker as the main feed experience,
+> so read the 360Brew-specific claims below as the architecture the 360Brew authors described, which the
+> production feed may not use.
 >
 > **The strongest input is not in this file.** It is your own analytics. Thirty of your own posts,
 > measured, tell you more about what works on your account than seventy articles about the platform.
@@ -56,7 +58,8 @@ third-degree distribution.
 - Two phases: before the "see more" cut, and after it.
 - **Click bounce.** Expanding a post and leaving within a few seconds marks it as clickbait and cuts
   reach. The line right after the cut has to pay off the hook.
-- **Position bias.** In a decoder-only model, the opening and closing carry more weight in indexing.
+- **Position bias.** In a decoder-only model, which is what LinkedIn's 360Brew paper described, the
+  opening and closing carry more weight in indexing.
 
 **What to do:**
 1. Two to three lines per paragraph, blank line between blocks, directional markers (numbers,
@@ -78,7 +81,8 @@ to be a document (carousel) instead.
 graph it gets filed under.
 
 **Mechanism:**
-- **Lost in distance.** A decoder-only model weights the opening sentences disproportionately.
+- **Lost in distance.** A decoder-only model (see position bias above) weights the opening
+  sentences disproportionately.
 - The "see more" click is the first quality signal inside the first 60 minutes.
 - If the expansion does not continue the promise, click bounce cancels the gain.
 
@@ -154,9 +158,9 @@ format if the ideal one is out of reach.
   without having lived something.
 
 **Two modes:**
-- **Edit** (default) — rewrite the draft applying the dictionary and patterns below. This is the gate
+- **Edit** (default): rewrite the draft applying the dictionary and patterns below. This is the gate
   before publishing. Equivalent to `tools/sanitize.py`.
-- **Detect** — audit only. Name each pattern, quote the line, suggest a short fix. Do not rewrite, do
+- **Detect**: audit only. Name each pattern, quote the line, suggest a short fix. Do not rewrite, do
   not score the draft, and do not try to guess whether an AI wrote it. AI detectors guess. A named
   pattern is evidence the author can check. Equivalent to `tools/sanitize.py --check`.
 
@@ -171,33 +175,33 @@ format if the ideal one is out of reach.
 
 **Structural patterns to rewrite:**
 
-- **False dichotomy** — "It's not about X, it's about Y". Replace with an engineering claim: "The
+- **False dichotomy**: "It's not about X, it's about Y". Replace with an engineering claim: "The
   market optimizes X, but the revenue bottleneck is Y."
-- **Adjective cocktail hook** — "A [adj1], [adj2] and [adj3] strategy". Lead with the outcome.
-- **Theatrical conclusion** — "Let's build a better future together". Use a technical CTA instead.
-- **Throat-clearing opener** — "Here's the thing", "Let me be clear", "I'll be honest", "The
+- **Adjective cocktail hook**: "A [adj1], [adj2] and [adj3] strategy". Lead with the outcome.
+- **Theatrical conclusion**: "Let's build a better future together". Use a technical CTA instead.
+- **Throat-clearing opener**: "Here's the thing", "Let me be clear", "I'll be honest", "The
   uncomfortable truth is". Cut and start at the point.
-- **Faux-insight setup** — "Here's what nobody tells you", "What most people get wrong". It flatters
+- **Faux-insight setup**: "Here's what nobody tells you", "What most people get wrong". It flatters
   the author as a lone expert. Let the claim stand alone: "The part everyone misses: distribution is
   the moat" becomes "Distribution is the moat."
-- **Colon reveal** — a short nominal phrase, a colon, then a dramatic lowercase reveal. "The best
+- **Colon reveal**: a short nominal phrase, a colon, then a dramatic lowercase reveal. "The best
   part: it learns on its own." Rewrite flat. Colons are for lists, labels and quotes.
-- **Superficial -ing clause** — "..., highlighting the team's commitment to better workflows". It
+- **Superficial -ing clause**: "..., highlighting the team's commitment to better workflows". It
   fakes explanation. Say the mechanism: "..., so users find old drafts without leaving the editor."
-- **Weasel attribution** — "experts agree", "studies show", "industry reports suggest". Name the
-  source or drop the claim. Never invent one; ask the author.
-- **Fake-strong verb** — "serves as a centralized hub for". Prefer is, has, does: "tracks sponsors,
+- **Weasel attribution**: "experts agree", "studies show", "industry reports suggest". Name the
+  source or drop the claim. Never invent one. Ask the author.
+- **Fake-strong verb**: "serves as a centralized hub for". Prefer is, has, does: "tracks sponsors,
   drafts, due dates and approvals in one place."
-- **Synonym cycling** — rotating terms for style instead of repeating the right one. "The agent
+- **Synonym cycling**: rotating terms for style instead of repeating the right one. "The agent
   reviews the draft. The assistant scores the piece. The tool suggests edits." If the right word is
   the same word, repeat it.
-- **Negative listing** — "Not X. Not Y. It's Z." Say Z.
-- **Dramatic fragmentation** — "That's it. That's the whole thing." Choppy rhythm is a tell.
-- **Audience flattery** — "Whether you're a solo founder or a Fortune 500 exec". Name the real reader
+- **Negative listing**: "Not X. Not Y. It's Z." Say Z.
+- **Dramatic fragmentation**: "That's it. That's the whole thing." Choppy rhythm is a tell.
+- **Audience flattery**: "Whether you're a solo founder or a Fortune 500 exec". Name the real reader
   once, or cut it. The text already shows who it is for.
-- **Both-sides hedging** — "While X offers benefits, challenges remain." Take a side or name the
+- **Both-sides hedging**: "While X offers benefits, challenges remain." Take a side or name the
   concrete tradeoff: "It writes the first 80% fast. The last 20% still needs you to review every line."
-- **Rhetorical setup** — "What if I told you...", "Think about it:", self-answered question pairs.
+- **Rhetorical setup**: "What if I told you...", "Think about it:", self-answered question pairs.
   Drop it and make the claim.
 
 **Self-eval loop.** After rewriting, run this. Every item is yes/no. Any "yes" sends you back. Loop
@@ -272,27 +276,30 @@ here came from paid or leaked material.
 
 **LinkedIn engineering, primary**
 
-- *360Brew: A Decoder-only Foundation Model for Personalized Ranking and Recommendation* — arXiv
-  [2501.16450](https://arxiv.org/abs/2501.16450)
-- *LiRank: Industrial Large Scale Ranking Models at LinkedIn* — arXiv
+- *360Brew: A Decoder-only Foundation Model for Personalized Ranking and Recommendation*, arXiv
+  [2501.16450](https://arxiv.org/abs/2501.16450). arXiv has since removed every version, noting that the
+  submitter did not have the right to agree to its license. The abstract page still records it and
+  the PDF is gone, so treat anything here that depends on it as resting on a withdrawn source.
+- *LiRank: Industrial Large Scale Ranking Models at LinkedIn*, arXiv
   [2402.06859](https://arxiv.org/abs/2402.06859)
-- *An Industrial-Scale Sequential Recommender for LinkedIn Feed Ranking*
-- *Personalized Job Recommendation System at LinkedIn* (RecSys)
-- *The Evolution of LinkedIn's Generative AI Tech Stack*; LinkedIn on scaling LLM semantic search and
-  vLLM serving; the Feathr feature store
+- *An Industrial-Scale Sequential Recommender for LinkedIn Feed Ranking*, arXiv
+  [2602.12354](https://arxiv.org/abs/2602.12354)
+- Kenthapadi et al., *Personalized Job Recommendation System at LinkedIn* (RecSys 2017)
+- *The Evolution of LinkedIn's Generative AI Tech Stack* (ByteByteGo, written with LinkedIn's
+  engineering team), LinkedIn on scaling LLM semantic search and
+  vLLM serving, the Feathr feature store
 
 **Independent research** (freely published editions only)
 
-- **Richard van der Blom** / Just Connecting — LinkedIn algorithm research, October 2020 edition, as
-  hosted publicly by the Stony Brook SBDC. His current editions are a paid product and were not used.
-- Trust Insights — *The Unofficial LinkedIn Algorithm Guide for Marketers*, mid-2025 edition
-- *Mastering the LinkedIn Algorithm in 2025/26* (The Lone Recruiter)
+- **Richard van der Blom** / Just Connecting: a freely published 2020 edition of his LinkedIn
+  algorithm research. His current editions are a paid product and were not used.
+- Trust Insights: *The Unofficial LinkedIn Algorithm Guide for Marketers*, mid-2025 edition
 
 **Practitioners whose public work shaped the writing specs**
 
-- **Jasmin Alić** — writing and commenting playbooks. Spec 2's readability frame is his.
-- **Michelle J Raymond** — B2B social strategy
-- **Richard van der Blom** — 360Brew analysis and credibility scoring
+- **Jasmin Alić**: writing and commenting playbooks. Spec 2's readability frame is his.
+- **Michelle J Raymond**: B2B social strategy
+- **Richard van der Blom**: 360Brew analysis and credibility scoring
 
 **Anti-slop pattern set**
 
