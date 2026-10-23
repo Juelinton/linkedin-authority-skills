@@ -12,3 +12,11 @@ __pycache__/
 .DS_Store
 .venv/
 venv/
+
+# Secrets never enter this repo
+.env
+.env*
+*.key
+*.pem
+secrets*
+credentials*
