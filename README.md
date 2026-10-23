@@ -139,6 +139,10 @@ numbers win.
 
 ---
 
+## Questions and problems
+
+Open an [issue](../../issues) on this repository. That is the only channel, and answers stay public so the next person finds them.
+
 ## Credits
 
 The anti-slop pattern set is adapted from [petergyang/no-ai-slop](https://github.com/petergyang/no-ai-slop) (MIT), with its license reproduced in `THIRD_PARTY_NOTICES.md`.
