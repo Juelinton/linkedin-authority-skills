@@ -78,8 +78,16 @@ def strip_preamble(text):
     return cleaned.strip()
 
 
+# YAML frontmatter at the top of the file. Note-taking and static-site tools (Obsidian, Jekyll,
+# Hugo) inject a "---\ntitle: ...\ntags: ...\n---" block into every .md they index, and drafts are
+# exactly the files you copy and paste into LinkedIn. Without this, the block goes with them.
+# Only stripped when it opens the file, so a "---" used as a divider mid-body survives.
+_FRONTMATTER = re.compile(r"\A---\r?\n.*?\r?\n---\r?\n", re.DOTALL)
+
+
 def sanitize(text):
     """Remove what LinkedIn will not render, and what reads as machine-written."""
+    text = _FRONTMATTER.sub("", text)                        # YAML frontmatter from note tools
     text = text.replace("**", "").replace("*", "")           # LinkedIn shows these literally
     text = re.sub(r"\s*[—–]\s*", ", ", text)       # em/en dash -> comma
     text = re.sub(r"(?<![\w/])_([^\s_][^_\n]*?[^\s_])_(?![\w/])", r"\1", text)   # _italic_
@@ -94,7 +102,9 @@ def sanitize(text):
 
 
 def clean(text):
-    return sanitize(strip_preamble(text))
+    # Frontmatter first: with a note-tool header on top, the preamble is not at the start of the
+    # string yet, and strip_preamble would let "Here is your post:" through.
+    return sanitize(strip_preamble(_FRONTMATTER.sub("", text)))
 
 
 # --- what regex must not try to fix on its own -------------------------------------------------
@@ -104,6 +114,19 @@ _FALSE_DICHOTOMY = re.compile(
     r"(?:it\'?s|this is|that\'?s)\s+not\s+(?:about\s+)?[^.,;!?\n]{2,40}[,.]?\s*(?:it\'?s|it is)\s+(?:about\s+)?"
     r"|n[ãa]o\s+(?:é|se trata de|era)\s+(?:sobre\s+)?[^.,;!?\n]{2,40}[,]\s*(?:é|e)\s+(?:sobre\s+)?"
     r")",
+    re.IGNORECASE,
+)
+# Negating what nobody offered (generalizes the older "redundant negation of the opposite"):
+# "should be studied, not approached", "worse, not better". An assertion followed by the negation
+# of an alternative the reader never had on the table. You only say "not tea" if someone offered
+# tea, and in a text nobody offered anything: the "not Y" tail PRESUMES a thought the reader did
+# not have, and that presumption is the AI tell. It holds even when Y is not the antonym (which is
+# how "studied, not approached" slipped past the old framing). Fix: state the positive and cut the
+# tail; if the contrast is real, earn it as a full sentence. NOTICE tier: the regex catches the
+# SHAPE (comma + negation + word, anywhere, no end-of-sentence anchor), and the legitimate
+# exception (the alternative was genuinely raised beforehand) is a human call.
+_REDUNDANT_NEGATION = re.compile(
+    r",\s*(?:and\s+)?(?:not|never|nor)\s+[\w'’]+",
     re.IGNORECASE,
 )
 _EMOJI = re.compile(
@@ -264,6 +287,14 @@ def report(text):
 def advise(text):
     """NOTICE patterns. Names them, quotes the line, suggests a fix. Never blocks."""
     notices = []
+
+    for m in _REDUNDANT_NEGATION.finditer(text):
+        notices.append(
+            f'negating what nobody offered: "…{m.group(0).strip()[:40]}…" — you negated an '
+            f'alternative the reader never had on the table; state the positive and cut the tail '
+            f'("studied, not approached" becomes "rewards careful study"). Keep it only if the '
+            f'alternative was raised on purpose beforehand.'
+        )
 
     hits = []
     for n, line in enumerate(text.splitlines(), 1):
